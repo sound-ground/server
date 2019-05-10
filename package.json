@@ -8,7 +8,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sound-ground/server.git"
+    "url": "git+https://github.com/sound-ground/server.git",
+    "start": "node app.js",
+    "dev": "node app.js"
   },
   "keywords": [],
   "author": "",
