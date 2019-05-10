@@ -20,6 +20,10 @@ const sendUploadToGCS = (req, res, next) => {
     return next()
   }
 
+  if (!req.file.mimetype.includes('audio')) {
+    return next()
+  }
+
   const gcsname = Date.now() + req.file.originalname
   const file = bucket.file(gcsname)
 
@@ -46,13 +50,13 @@ const sendUploadToGCS = (req, res, next) => {
 }
 
 const Multer = require('multer'),
-      multer = Multer({
-        storage: Multer.MemoryStorage,
-        limits: {
-          fileSize: 5 * 1024 * 1024
-        }
-        // dest: '../images'
-      })
+  multer = Multer({
+    storage: Multer.MemoryStorage,
+    limits: {
+      fileSize: 5 * 1024 * 1024
+    }
+    // dest: '../images'
+  })
 
 module.exports = {
   getPublicUrl,

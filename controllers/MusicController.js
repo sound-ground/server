@@ -2,9 +2,11 @@ const Music = require('../models/Music')
 
 class MusicController {
     static create(req, res) {
+        let url = null
+        if (req.file) url = req.file.cloudStoragePublicUrl
         Music.create({
             title: req.body.title,
-            url: req.file.cloudStoragePublicUrl,
+            url,
             createdAt: new Date()
         })
             .then(createdMusic => {
